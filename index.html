@@ -3,566 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mission Saint-Valentin - Sélection Alexandre pour Céline</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <title>Pour Céline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-red: #8e1c1c;
-            --gold: #c5a059;
-            --dark-bg: #121212;
-            --light-bg: #fdfcfb;
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --closed-text: #7f8c8d;
-            --closed-bg: #f2f2f2;
-        }
-
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--light-bg);
-            color: #333;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%);
+            background: radial-gradient(circle at center, #fff5f7, #ffd1dc);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            touch-action: manipulation;
         }
 
-        /* --- Header --- */
-        header {
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-            border-bottom: 3px solid var(--gold);
-        }
-
-        .logo {
-            max-width: 180px;
-            height: auto;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-
-        header h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            margin: 0;
-            letter-spacing: 4px;
-        }
-
-        /* --- Personal Note --- */
-        .invitation-box {
-            background: white;
-            max-width: 800px;
-            margin: -30px auto 40px;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: var(--card-shadow);
-            text-align: center;
-            position: relative;
-            z-index: 10;
-            border: 1px solid var(--gold);
-        }
-
-        .invitation-box h2 {
+        h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
-            color: var(--primary-red);
-            margin-bottom: 15px;
         }
 
-        .invitation-box p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            font-style: italic;
+        /* Le bouton OUI */
+        .btn-yes {
+            background: linear-gradient(to right, #be185d, #9d174d);
+            transition: transform 0.3s, box-shadow 0.3s;
+            z-index: 50;
+            position: relative; 
+        }
+        
+        .btn-yes:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(157, 23, 77, 0.4);
         }
 
-        /* --- Quiz Form --- */
-        .quiz-section {
-            background: #fffcf5;
-            max-width: 900px;
-            margin: 0 auto 40px;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
+        /* Le bouton NON : Le danseur fou */
+        .btn-no {
+            position: fixed;
+            /* Transition par défaut pour le mouvement auto */
+            transition: all 0.5s ease-in-out; 
+            background-color: white;
+            color: #64748b;
+            border: 1px solid #cbd5e1;
+            z-index: 40;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            /* On s'assure qu'il ne sort pas de l'écran au chargement */
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .quiz-section h3 {
-            font-family: 'Cinzel', serif;
-            text-align: center;
-            color: var(--dark-bg);
-            margin-bottom: 25px;
-            font-size: 1.2rem;
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            animation: floatUp 15s linear infinite;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: #555;
-        }
-
-        .form-group select {
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: 'Montserrat', sans-serif;
-            background: white;
-            cursor: pointer;
-        }
-
-        .quiz-btn {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, #8e1c1c 0%, #b33939 100%);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: 0.3s;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 4px 15px rgba(142, 28, 28, 0.3);
-        }
-
-        .quiz-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(142, 28, 28, 0.4);
-        }
-
-        /* --- Results Area --- */
-        .container {
-            max-width: 1300px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
         }
 
         .card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            border-top: 6px solid var(--gold);
-            padding: 30px;
-            position: relative;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.5);
         }
 
-        .card.closed {
-            border-top-color: var(--closed-text);
-            background: var(--closed-bg);
-            color: var(--closed-text);
-            opacity: 0.7;
+        .hidden {
+            display: none !important;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        .fade-in {
+            animation: fadeIn 2s ease forwards;
         }
 
-        .badge-container {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            padding: 5px 14px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .badge-price { background: var(--primary-red); }
-        .badge-score { background: var(--gold); }
-        .badge-closed { background: var(--closed-text); }
-
-        .card h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            margin: 0 0 12px 0;
-            color: var(--dark-bg);
-            line-height: 1.2;
-        }
-
-        .address {
-            color: #777;
-            font-size: 0.85rem;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .vibe-box {
-            background: #fdf8f0;
-            border-left: 4px solid var(--gold);
-            padding: 15px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: #555;
-            font-style: italic;
-        }
-
-        .price-details {
-            font-size: 0.85rem;
-            color: #333;
-            margin-bottom: 20px;
-            padding: 10px;
-            background: #fffafa;
-            border-radius: 8px;
-        }
-
-        .price-details strong {
-            display: block;
-            color: var(--primary-red);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .verify-text {
-            font-size: 0.7rem;
-            color: #bbb;
-            margin-top: auto;
-            padding-top: 15px;
-            border-top: 1px solid #f1f1f1;
-        }
-
-        #noResult {
-            text-align: center;
-            grid-column: 1 / -1;
-            padding: 60px;
-            display: none;
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px;
-            background: var(--dark-bg);
-            color: white;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 1.6rem; }
-            .container { grid-template-columns: 1fr; }
-            .invitation-box { margin: -20px 15px 30px; padding: 25px; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body>
+<body class="flex items-center justify-center">
 
-<header>
-    <h1>Mission Saint-Valentin</h1>
-    <p>Alexandre, trouve la table parfaite pour Céline</p>
-</header>
+    <div id="bg-decoration" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
 
-<section class="invitation-box">
-    <h2>L'écrin pour Céline</h2>
-    <p>
-        "Alexandre, voici ta sélection de 30 restaurants avec ambiances et tarifs vérifiés. <br>
-        Filtre par style pour trouver l'endroit qui lui correspond le mieux." <br>
-        <span style="color: var(--primary-red); font-size: 1.5rem;">❤</span>
-    </p>
-</section>
+    <!-- Interface Principale -->
+    <div id="main-card" class="card p-8 md:p-12 max-w-2xl w-full mx-4 text-center z-10 relative">
+        <div class="mb-6">
+            <span class="text-6xl text-rose-500 drop-shadow-sm">🌹</span>
+        </div>
 
-<section class="quiz-section">
-    <h3>Filtrer ta sélection :</h3>
-    <div class="form-grid">
-        <div class="form-group">
-            <label>Budget maximum par pers.</label>
-            <select id="qPrice">
-                <option value="all">Tous les budgets</option>
-                <option value="cat1">Moins de 80€</option>
-                <option value="cat2">Entre 80€ et 110€</option>
-                <option value="cat3">Entre 110€ et 150€</option>
-                <option value="cat4">Prestige (+150€)</option>
-            </select>
+        <h1 class="text-5xl md:text-7xl text-rose-800 mb-6 leading-tight">
+            Ma chérie Céline...
+        </h1>
+
+        <p class="text-xl text-slate-700 italic mb-4">
+            Les années passent, mais tu restes mon évidence.
+        </p>
+        
+        <p class="text-2xl font-semibold text-slate-800 mb-10">
+            Veux-tu être ma Valentine ce soir ?
+        </p>
+
+        <div class="flex justify-center items-center gap-8 h-20">
+            <button id="btn-yes" class="btn-yes text-white text-xl py-3 px-10 rounded-full font-medium shadow-lg cursor-pointer">
+                Oui, avec joie ❤️
+            </button>
+            <div class="w-32"></div> 
         </div>
-        <div class="form-group">
-            <label>Ambiance souhaitée</label>
-            <select id="qVibe">
-                <option value="all">Toutes les ambiances</option>
-                <option value="romantique">Intime & Romantique</option>
-                <option value="historique">Patrimoine & Histoire</option>
-                <option value="moderne">Moderne & Design</option>
-                <option value="nature">Nature & Vue</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label>Secteur géographique</label>
-            <select id="qArea">
-                <option value="all">Toutes les zones</option>
-                <option value="cite">Cité Médiévale</option>
-                <option value="bastide">Carcassonne / Bastide</option>
-                <option value="alentours">Alentours</option>
-            </select>
-        </div>
-        <button class="quiz-btn" onclick="runFilter()">Appliquer les filtres</button>
     </div>
-</section>
 
-<div class="container" id="grid">
-    <div id="noResult">
-        <h3>Aucune table trouvée...</h3>
-        <p>Alexandre, essaie de modifier tes filtres pour Céline.</p>
+    <!-- Le Bouton Fugitif -->
+    <button id="btn-no" class="btn-no text-slate-500 py-3 px-6 rounded-full text-lg whitespace-nowrap">
+        Je réfléchis... 🤔
+    </button>
+
+    <!-- Écran de Succès -->
+    <div id="success-screen" class="hidden absolute inset-0 bg-white/60 backdrop-blur-md z-50 flex flex-col items-center justify-center text-center p-6">
+        <h1 class="text-6xl md:text-8xl text-rose-600 font-['Great_Vibes'] mb-8 fade-in">Je t'aime</h1>
+        
+        <div class="max-w-xl space-y-6 fade-in" style="animation-delay: 0.5s;">
+            <p class="text-2xl md:text-3xl text-slate-800 font-light leading-relaxed">
+                Tu fais de moi l'homme le plus heureux du monde.
+            </p>
+            <hr class="border-rose-200 w-1/2 mx-auto">
+            <p class="text-xl text-slate-700 italic">
+                Prépare-toi mon cœur...<br>
+                Ce soir, je t'emmène au restaurant pour célébrer notre histoire.
+            </p>
+            <p class="text-3xl text-rose-800 font-['Great_Vibes'] mt-8 pt-4">
+                - Ton Alexandre
+            </p>
+            <div class="text-6xl mt-4 animate-bounce">🥂</div>
+        </div>
     </div>
-</div>
 
-<footer>
-    <p>&copy; 2026 - Alexandre x Céline - Une soirée inoubliable</p>
-</footer>
+    <script>
+        // --- 1. Gestion des Animations de Fond ---
+        const bgContainer = document.getElementById('bg-decoration');
+        const symbols = ['❤️', '✨', '🌹'];
+        
+        function createBackgroundElements() {
+            const count = 15;
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.classList.add('floating-heart');
+                el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                el.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                el.style.animationDelay = (Math.random() * 5) + 's';
+                bgContainer.appendChild(el);
+            }
+        }
+        createBackgroundElements();
 
-<script>
-// --- DONNÉES TECHNIQUES COMPLÈTES AVEC AMBIANCES ---
-const data = [
-    {rank:1, name:"Domaine d'Auriac", address:"Route de Saint-Hilaire, 11000 Carcassonne — ~5–8 km",
-      priceText:"SV 2026 : 130€ / pers. (TheFork) ; alt. Menu du domaine 80€ ; « Fou de Truffes » 120€",
-      priceNums:[130,80,120], vibe:"Table gastronomique dans un domaine (terrasse; service très noté) — bon pour une soirée très soignée.",
-      vibeType:"historique", area:"alentours", score:"4.6/5"
-    },
-    {rank:2, name:"Restaurant La Barbacane", address:"Hôtel de la Cité, Place Auguste Pierre Pont — ~0–3 km",
-      priceText:"SV 2026 : Déjeuner 95€ / pers. ; Dîner 225€ / pers. (souvent complet)",
-      priceNums:[95,225], vibe:"Cadre néo-gothique / lieu emblématique dans la Cité (ambiance feutrée).",
-      vibeType:"historique", area:"cite", score:"4.4/5"
-    },
-    {rank:3, name:"La Table de Franck Putelat", address:"Carcassonne — ~0–5 km",
-      priceText:"SV 2026 : NC. Repère : menu St-Valentin 2025 à 195€ / pers. (hors boissons).",
-      priceNums:[195], vibe:"Expérience très gastronomique (niveau prix généralement élevé).",
-      vibeType:"moderne", area:"bastide", score:"4.0/5"
-    },
-    {rank:4, name:"Le Puits du Trésor", address:"Lastours (11600) — ~12–15 km",
-      priceText:"SV 2026 : 135€ / pers. ; alt. Menu Découverte 75€ ; Menu Terre & Mer 95€",
-      priceNums:[135,75,95], vibe:"Table de haute cuisine : idéale si Céline aime les dîners “expérience”.",
-      vibeType:"nature", area:"alentours", score:"4.3/5"
-    },
-    {rank:5, name:"L'Ambrosia", address:"Carrefour la Madeleine (D6113), 11170 Pezens — ~8–12 km",
-      priceText:"SV 2026 : 95€ / pers. (hors boissons). Alt : Tentation 55€ ; Dégustation 62€.",
-      priceNums:[95,55,62,68], vibe:"Cuisine moderne soignée ; cadre intimiste (cave privatisable).",
-      vibeType:"romantique", area:"alentours", score:"4.6/5"
-    },
-    {rank:6, name:"La Table d'Alaïs", address:"32 rue du Plô (La Cité) — ~0–3 km",
-      priceText:"SV 2026 : 85€ / pers., menu unique “le 14 février au soir”.",
-      priceNums:[85], vibe:"Gastro dans la Cité : élégant, parfait pour un dîner romantique.",
-      vibeType:"historique", area:"cite", score:"4.5/5"
-    },
-    {rank:7, name:"Auberge des Lices", address:"3 rue Raymond Roger de Trencavel (La Cité) — ~0–3 km",
-      priceText:"SV 2026 : menu “Saint Valentin” 75€ (site).",
-      priceNums:[75], vibe:"Charme Cité médiévale : décor pierre, ambiance intimiste.",
-      vibeType:"romantique", area:"cite", score:"4.2/5"
-    },
-    {rank:8, name:"Chez Christine", address:"4 Rue Porte d'Aude, 11000 Carcassonne — ~0–3 km",
-      priceText:"SV 2026 : 75€ / pers. (PDF “menu 14.02.2026”).",
-      priceNums:[75], vibe:"Cadre cosy et soigné (pierre / lumières ; déco mentionnée).",
-      vibeType:"romantique", area:"bastide", score:"4.0/5"
-    },
-    {rank:9, name:"Chez Fred by Pierre et Siham", address:"Carcassonne — ~0–5 km",
-      priceText:"SV 2026 : 70€ / pers., “hors boisson”, midi & soir.",
-      priceNums:[70], vibe:"Très bon compromis romantique + valeur sûre, sans exploser le budget.",
-      vibeType:"romantique", area:"bastide", score:"3.9/5"
-    },
-    {rank:10, name:"Restaurant TRIBE Carcassonne", address:"2 rue des 3 Couronnes — ~0–2 km",
-      priceText:"SV 2026 : 65€ / pers. hors boissons.",
-      priceNums:[65], vibe:"Ambiance contemporaine “hôtel design” : moderne et instagrammable.",
-      vibeType:"moderne", area:"bastide", score:"3.6/5"
-    },
-    {rank:11, name:"Le Meez Restaurant", address:"290 av. du Général Leclerc — ~2–4 km",
-      priceText:"SV 2026 : 55€ / pers. (TheFork).",
-      priceNums:[55], vibe:"Option soignée sans chichi (ambiance bien notée).",
-      vibeType:"moderne", area:"alentours", score:"3.3/5"
-    },
-    {rank:12, name:"Le Moulin de Trèbes", address:"2 Rue du Moulin de Trèbes — ~8–10 km",
-      priceText:"SV 2026 : menu spécial 55€ / pers. (hors boissons).",
-      priceNums:[55], vibe:"Cadre au fil de l’eau : paisible, romantique.",
-      vibeType:"nature", area:"alentours", score:"3.1/5"
-    },
-    {rank:13, name:"Le Bistrot d'Alice", address:"26 Rue Chartrand — ~0–2 km",
-      priceText:"SV 2026 : menu 59€ / pers. (Instagram).",
-      priceNums:[59], vibe:"Tête-à-tête cosy en cœur de ville, format bistrot.",
-      vibeType:"romantique", area:"bastide", score:"3.2/5"
-    },
-    {rank:14, name:"Le Jardin en Ville", address:"5 rue des Framboisiers — ~2–4 km",
-      priceText:"SV 2026 : Menu spécial annoncé sur réseaux.",
-      priceNums:[], vibe:"Ambiance originale / contemporaine ; bon si Céline aime les lieux vivants.",
-      vibeType:"nature", area:"bastide", score:"3.3/5"
-    },
-    {rank:15, name:"La Marquière", address:"13 rue Saint Jean — ~0–2 km",
-      priceText:"SV 2026 : Non publié. Repère : 46€.",
-      priceNums:[46], vibe:"Bon “anti-attrape-touristes” avec patio agréable.",
-      vibeType:"romantique", area:"cite", score:"3.6/5"
-    },
-    {rank:16, name:"Le-Bis-Troquet", address:"22 rue Chartran — ~0–2 km",
-      priceText:"SV 2026 : Non publié. Repère : <60€.",
-      priceNums:[], vibe:"Convivial, moins “grand soir”.",
-      vibeType:"romantique", area:"bastide", score:"3.1/5"
-    },
-    {rank:17, name:"La Table du Roi", address:"2 Rue des Calquières — ~0–2 km",
-      priceText:"SV 2026 : Menu Saint Valentin annoncé.",
-      priceNums:[55], vibe:"Cadre patrimonial : plaira si Céline aime les ambiances “Cité”.",
-      vibeType:"historique", area:"cite", score:"3.4/5"
-    },
-    {rank:18, name:"S Comme", address:"7 Rue Barri del Castel, Palaja — ~6–8 km",
-      priceText:"SV 2026 : NC. Repère : 38€ et 42€.",
-      priceNums:[38,42], vibe:"INSIDER proche Carcassonne, terrasse agréable.",
-      vibeType:"nature", area:"alentours", score:"3.4/5"
-    },
-    {rank:19, name:"La Table Cave du Château", address:"La Métairie Basse, Pennautier — ~5–7 km",
-      priceText:"SV 2026 : NC. Repère : 33€.",
-      priceNums:[33], vibe:"Cadre domaine/bergerie ; romantique.",
-      vibeType:"historique", area:"alentours", score:"3.5/5"
-    },
-    {rank:20, name:"La Rencontre", address:"6 Place des Tilleuls, Montolieu — ~18–20 km",
-      priceText:"SV 2026 : menu dès 30€ sur réservation.",
-      priceNums:[30], vibe:"Village-livre : soirée simple et charmante.",
-      vibeType:"romantique", area:"alentours", score:"2.8/5"
-    },
-    {rank:21, name:"Freaks Bistronomie", address:"Bastide — ~0–3 km",
-      priceText:"SV 2026 : Non publié. Repère : Bistronomie.",
-      priceNums:[], vibe:"Bistronomie urbaine : créatif et branché.",
-      vibeType:"moderne", area:"bastide", score:"3.4/5"
-    },
-    {rank:22, name:"Bloc G", address:"Carcassonne — ~0–5 km",
-      priceText:"SV 2026 : Non publié. Repère : Maison d'hôtes.",
-      priceNums:[], vibe:"Lieu intimiste et discret si Céline aime le calme.",
-      vibeType:"romantique", area:"alentours", score:"3.0/5"
-    },
-    {rank:23, name:"Auberge de Dame Carcas", address:"Cité médiévale — ~0–3 km",
-      priceText:"SV 2026 : Non publié. Repère : Cité.",
-      priceNums:[], vibe:"Vieilles pierres : romantisme historique.",
-      vibeType:"historique", area:"cite", score:"3.0/5"
-    },
-    {rank:24, name:"Le Bistrot d'Auriac", address:"Carcassonne — ~5–8 km",
-      priceText:"SV 2026 : Non publié. Repère : Bistro chic.",
-      priceNums:[], vibe:"Alternative bistro chic du grand domaine.",
-      vibeType:"romantique", area:"alentours", score:"2.9/5"
-    },
-    {rank:25, name:"Brasserie à 4 Temps", address:"Bastide — ~0–3 km",
-      priceText:"SV 2026 : Non publié.",
-      priceNums:[], vibe:"Option brasserie soignée Putelat.",
-      vibeType:"moderne", area:"bastide", score:"2.7/5"
-    },
-    {rank:26, name:"Mercure La Cité — La Table de l'Olivier", address:"Carcassonne — ~0–3 km",
-      priceText:"SV 2026 : Non publié.",
-      priceNums:[], vibe:"Confort hôtelier sérieux.",
-      vibeType:"moderne", area:"cite", score:"2.8/5"
-    },
-    {rank:27, name:"Au Four Saint Louis", address:"Cité — ~0–3 km",
-      priceText:"SV 2026 : Non publié.",
-      priceNums:[], vibe:"Ambiance traditionnelle Cité.",
-      vibeType:"historique", area:"cite", score:"2.6/5"
-    },
-    {rank:28, name:"Comte Roger", address:"Cité — ~0–3 km",
-      priceText:"Fermeture pour transition (mi-mars 2026).",
-      priceNums:[], vibe:"Indisponible ce soir.",
-      vibeType:"historique", area:"cite", score:"1.8/5", status:"closed"
-    },
-    {rank:29, name:"Café de la Comédie", address:"Carcassonne — ~0–2 km",
-      priceText:"SV 2026 : Non publié. Repère : ~25€.",
-      priceNums:[25], vibe:"Café/bistro central.",
-      vibeType:"moderne", area:"bastide", score:"2.3/5"
-    },
-    {rank:30, name:"La Taverne Moderne", address:"Carcassonne — ~0–2 km",
-      priceText:"SV 2026 : Non publié. Repère : ~25€.",
-      priceNums:[25], vibe:"Adresse populaire et simple.",
-      vibeType:"moderne", area:"bastide", score:"2.4/5"
-    }
-];
+        // --- 2. Le Bouton "Je réfléchis" (Le danseur hyperactif) ---
+        const btnNo = document.getElementById('btn-no');
+        const btnYes = document.getElementById('btn-yes');
+        let moveInterval;
 
-function determineCategory(nums) {
-    if (nums.length === 0) return "all";
-    const max = Math.max(...nums);
-    if (max < 80) return "cat1";
-    if (max <= 110) return "cat2";
-    if (max <= 150) return "cat3";
-    return "cat4";
-}
-
-function render(list) {
-    const grid = document.getElementById('grid');
-    const noResult = document.getElementById('noResult');
-    grid.querySelectorAll('.card').forEach(c => c.remove());
-
-    if (list.length === 0) {
-        noResult.style.display = 'block';
-    } else {
-        noResult.style.display = 'none';
-        list.forEach(r => {
-            const isClosed = r.status === 'closed';
-            const card = document.createElement('div');
-            card.className = `card ${isClosed ? 'closed' : ''}`;
+        function getRandomPosition() {
+            const padding = 60; // Marge de sécurité
+            const maxWidth = window.innerWidth - btnNo.offsetWidth - padding;
+            const maxHeight = window.innerHeight - btnNo.offsetHeight - padding;
             
-            card.innerHTML = `
-                <div class="badge-container">
-                    ${isClosed ? '<span class="badge badge-closed">INDISPONIBLE</span>' : `<span class="badge badge-price">${r.priceNums.length > 0 ? 'Max : ' + Math.max(...r.priceNums) + '€' : 'Prix NC'}</span>`}
-                    <span class="badge badge-score">Note : ${r.score}</span>
-                </div>
-                <h2>${r.name}</h2>
-                <div class="address">📍 ${r.address}</div>
+            const randomX = Math.max(padding, Math.random() * maxWidth);
+            const randomY = Math.max(padding, Math.random() * maxHeight);
+            
+            return { x: randomX, y: randomY };
+        }
+
+        function startAutoMove() {
+            // Nettoyage préventif
+            clearInterval(moveInterval);
+            
+            // Premier saut
+            const startPos = getRandomPosition();
+            btnNo.style.left = startPos.x + 'px';
+            btnNo.style.top = startPos.y + 'px';
+
+            // Boucle très rapide (0.8s) pour montrer qu'il est instable
+            moveInterval = setInterval(() => {
+                const pos = getRandomPosition();
+                const rot = Math.random() * 20 - 10; // Petite rotation aléatoire
                 
-                <div class="vibe-box">
-                    ${r.vibe}
-                </div>
+                btnNo.style.transition = "all 0.6s ease-in-out"; // Mouvement fluide mais rapide
+                btnNo.style.left = pos.x + 'px';
+                btnNo.style.top = pos.y + 'px';
+                btnNo.style.transform = `rotate(${rot}deg)`;
+            }, 800); 
+        }
 
-                <div class="price-details">
-                    <strong>Informations Tarifaires</strong>
-                    ${r.priceText}
-                </div>
+        function escape(e) {
+            if(e) e.preventDefault();
+            
+            // On coupe le mouvement auto pour réagir immédiatement
+            clearInterval(moveInterval);
+            
+            // Fuite instantanée (0.15s)
+            btnNo.style.transition = "all 0.15s ease-out"; 
+            
+            const pos = getRandomPosition();
+            const rot = Math.random() * 40 - 20; // Rotation plus forte sous la panique
 
-                <div class="verify-text">
-                    Considéré au 14/02/2026 pour Alexandre
-                </div>
-            `;
-            grid.appendChild(card);
+            btnNo.style.left = pos.x + 'px';
+            btnNo.style.top = pos.y + 'px';
+            btnNo.style.transform = `scale(0.9) rotate(${rot}deg)`;
+
+            // Reprend sa course folle très vite après la fuite
+            setTimeout(() => {
+                btnNo.style.transform = `scale(1) rotate(0deg)`;
+                startAutoMove();
+            }, 400);
+        }
+
+        // Zone de détection plus large (on ajoute un padding invisible via JS si besoin, 
+        // ou on laisse l'event listener faire le travail au survol)
+        btnNo.addEventListener('mouseover', escape);
+        btnNo.addEventListener('touchstart', escape);
+        btnNo.addEventListener('click', escape);
+
+        // Lancement immédiat
+        startAutoMove();
+
+        // --- 3. La Victoire ---
+        const successScreen = document.getElementById('success-screen');
+        const mainCard = document.getElementById('main-card');
+
+        btnYes.addEventListener('click', () => {
+            clearInterval(moveInterval);
+            btnNo.style.display = 'none';
+            
+            mainCard.style.transition = "opacity 0.5s";
+            mainCard.style.opacity = "0";
+
+            setTimeout(() => {
+                mainCard.style.display = 'none';
+                successScreen.classList.remove('hidden');
+                launchConfetti();
+            }, 500);
         });
-    }
-}
 
-function runFilter() {
-    const price = document.getElementById('qPrice').value;
-    const vibe = document.getElementById('qVibe').value;
-    const area = document.getElementById('qArea').value;
+        // --- 4. Confettis ---
+        function launchConfetti() {
+            const colors = ['#e11d48', '#be185d', '#fb7185', '#ffd700'];
+            
+            for(let i=0; i<100; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = '50%';
+                confetti.style.top = '50%';
+                confetti.style.borderRadius = '50%';
+                confetti.style.zIndex = '100';
+                document.body.appendChild(confetti);
 
-    let filtered = data;
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 300 + 100;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
 
-    if (price !== 'all') {
-        filtered = filtered.filter(r => determineCategory(r.priceNums) === price);
-    }
-    if (vibe !== 'all') {
-        filtered = filtered.filter(r => r.vibeType === vibe);
-    }
-    if (area !== 'all') {
-        filtered = filtered.filter(r => r.area === area);
-    }
-
-    render(filtered);
-    window.scrollTo({ top: document.getElementById('grid').offsetTop - 50, behavior: 'smooth' });
-}
-
-// Initial Load
-window.onload = () => render(data);
-</script>
-
+                confetti.animate([
+                    { transform: 'translate(0,0) scale(1)', opacity: 1 },
+                    { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 1500 + Math.random() * 1000,
+                    easing: 'cubic-bezier(0, .9, .57, 1)',
+                    fill: 'forwards'
+                });
+            }
+        }
+    </script>
 </body>
 </html>
+
+
