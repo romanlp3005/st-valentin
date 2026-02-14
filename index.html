@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sélection Saint-Valentin - Alexandre pour Céline</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #8e1c1c;
+            --gold: #c5a059;
+            --dark-bg: #121212;
+            --light-bg: #fdfcfb;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Header --- */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            margin: 0;
+            letter-spacing: 4px;
+        }
+
+        /* --- Invitation Section --- */
+        .invitation-box {
+            background: white;
+            max-width: 800px;
+            margin: -30px auto 40px;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 1px solid var(--gold);
+        }
+
+        .invitation-box h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+        }
+
+        .invitation-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            font-style: italic;
+        }
+
+        .heart {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+        }
+
+        /* --- Quiz Form --- */
+        .quiz-section {
+            background: #fffcf5;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .quiz-section h3 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--dark-bg);
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .form-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            background: white;
+        }
+
+        .quiz-btn {
+            grid-column: 1 / -1;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .quiz-btn:hover {
+            background: #6d1515;
+            transform: scale(1.01);
+        }
+
+        /* --- Filters --- */
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            padding: 8px 18px;
+            border: 1px solid var(--gold);
+            background: white;
+            color: var(--dark-bg);
+            cursor: pointer;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        /* --- Grid Layout --- */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 4px solid transparent;
+            border-top: 1px solid #eee;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-bottom: 4px solid var(--primary-red);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .price-tag {
+            background: var(--primary-red);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .card h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            margin: 0 0 10px 0;
+            color: var(--dark-bg);
+            text-transform: uppercase;
+        }
+
+        .location {
+            color: #777;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .ambiance {
+            font-style: italic;
+            color: #c5a059;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .remarks {
+            font-size: 0.85rem;
+            color: #444;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .card-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .site-link {
+            display: block;
+            text-align: center;
+            background: var(--dark-bg);
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .site-link:hover {
+            background: var(--gold);
+        }
+
+        #noResult {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 40px;
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: var(--dark-bg);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.6rem; }
+            .container { grid-template-columns: 1fr; }
+            .invitation-box { margin: -20px 15px 30px; padding: 25px; }
+            .invitation-box h2 { font-size: 2.2rem; }
+            .logo { max-width: 140px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="remax.png" alt="Logo Remax" class="logo">
+    <h1>Mission Saint-Valentin</h1>
+    <p>Alexandre, trouve la table parfaite pour Céline</p>
+</header>
+
+<section class="invitation-box">
+    <h2>Guide de décision pour Céline</h2>
+    <p>
+        "Alexandre, voici ta liste de 30 adresses mise à jour avec les tarifs réels de ce soir. <br>
+        Consulte les sites officiels pour découvrir le menu final avant de réserver." <br>
+        <span class="heart">❤</span>
+    </p>
+</section>
+
+<section class="quiz-section">
+    <h3>Qu'est-ce qui ferait le plus plaisir à Céline ce soir ?</h3>
+    <div class="form-grid">
+        <div class="form-group">
+            <label>Ton budget par personne</label>
+            <select id="qPrice">
+                <option value="all">Peu importe</option>
+                <option value="cat1">50€ - 80€</option>
+                <option value="cat2">80€ - 110€</option>
+                <option value="cat3">110€ - 150€</option>
+                <option value="cat4">Prestige (+150€)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>L'ambiance qu'elle préfère</label>
+            <select id="qVibe">
+                <option value="all">Peu importe</option>
+                <option value="romantique">Intime & Romantique</option>
+                <option value="historique">Château & Histoire</option>
+                <option value="moderne">Moderne & Design</option>
+                <option value="nature">Nature & Vue</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Zone géographique</label>
+            <select id="qArea">
+                <option value="all">Peu importe</option>
+                <option value="cite">Cité Médiévale</option>
+                <option value="bastide">Centre / Bastide</option>
+                <option value="alentours">Alentours / Campagne</option>
+            </select>
+        </div>
+        <button class="quiz-btn" onclick="runQuiz()">Filtrer les adresses</button>
+    </div>
+</section>
+
+<div class="filters">
+    <button class="filter-btn active" id="btnAll" onclick="filterData('all')">Toutes les options (30)</button>
+</div>
+
+<div class="container" id="restaurantGrid">
+    <div id="noResult">
+        <h3>Aucun établissement ne correspond à ces critères.</h3>
+        <p>Peut-être essayer une autre ambiance pour Céline ? <a href="#" onclick="filterData('all')">Tout voir</a></p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 - Alexandre x Céline - Une soirée inoubliable</p>
+</footer>
+
+<script>
+const restaurants = [
+    { name: "Le Meez", loc: "Carcassonne Centre", area: "alentours", price: "55€", cat: "cat1", vibe: "moderne", ambiance: "Lounge et design", remark: "Menu spécial à 55€ pour ce soir. Très tendance.", link: "https://le-meez.com/" },
+    { name: "La Table de la Bastide", loc: "Bastide Saint-Louis", area: "bastide", price: "80€", cat: "cat1", vibe: "moderne", ambiance: "Créative et contemporaine", remark: "Menu unique 4 services à 80€. Une valeur sûre.", link: "https://latable-delabastide.fr/" },
+    { name: "Château de Cavanac", loc: "Cavanac (10min)", area: "alentours", price: "80€", cat: "cat1", vibe: "historique", ambiance: "Château et pierres apparentes", remark: "Menu spécifique à 80€. Cadre historique magnifique.", link: "http://www.chateau-de-cavanac.fr/" },
+    { name: "Chez Christine", loc: "Bastide Saint-Louis", area: "bastide", price: "75€", cat: "cat1", vibe: "romantique", ambiance: "Intime et chaleureuse", remark: "Cuisine de terroir raffinée dans un cadre très privé.", link: "https://restaurant-chez-christine.business.site/" },
+    { name: "Le Puits du Trésor", loc: "Lastours (20min)", area: "alentours", price: "98€", cat: "cat2", vibe: "nature", ambiance: "Vue sur les châteaux", remark: "Menu unique à 98€ par le chef Jean-Marc Boyer.", link: "https://www.lepuitsdutresor.com/" },
+    { name: "La Table de Franck Putelat", loc: "Carcassonne", area: "bastide", price: "195€", cat: "cat4", vibe: "moderne", ambiance: "2 étoiles Michelin - Haute Couture", remark: "Menu d'exception à 195€ (hors boissons).", link: "https://www.franck-putelat.com/" },
+    { name: "La Barbacane", loc: "Hôtel de la Cité", area: "cite", price: "225€", cat: "cat4", vibe: "historique", ambiance: "Palace Médiéval", remark: "Dîner de prestige à 225€ dans un cadre mythique.", link: "https://www.hoteldelacite.com/" },
+    { name: "Domaine d'Auriac", loc: "Carcassonne Sud", area: "alentours", price: "130€", cat: "cat3", vibe: "historique", remark: "Menu dégustation haut de gamme pour la Saint-Valentin.", link: "https://www.domaine-auriac.com/" },
+    { name: "L'Artichaut", loc: "Bastide Centre", area: "bastide", price: "65€", cat: "cat1", vibe: "moderne", ambiance: "Bistronomie créative", remark: "Produits locaux travaillés avec beaucoup de finesse.", link: "https://www.facebook.com/lartichautcarcassonne/" },
+    { name: "Le Rideau Rouge", loc: "Carcassonne", area: "bastide", price: "55€", cat: "cat1", vibe: "moderne", ambiance: "Bistrot chic et vivant", remark: "Idéal pour une soirée détendue mais très gourmande.", link: "http://www.lerideaurouge.com/" },
+    { name: "Le Moulin de Trèbes", loc: "Trèbes", area: "alentours", price: "60€", cat: "cat1", vibe: "nature", ambiance: "Bord du Canal du Midi", remark: "Cadre apaisant au bord de l'eau.", link: "https://www.lemoulindetrebes.fr/" },
+    { name: "Brasserie A Quatre Temps", loc: "Carcassonne", area: "bastide", price: "68€", cat: "cat1", vibe: "moderne", remark: "Cuisine généreuse et service impeccable en ville basse.", link: "https://www.a-quatre-temps.com/" },
+    { name: "Le Bistrot d'Alice", loc: "Bastide", area: "bastide", price: "52€", cat: "cat1", vibe: "romantique", remark: "Ambiance conviviale et authentique.", link: "https://www.lebistrotdalice.fr/" },
+    { name: "L'Oustal et les Pitchouns", loc: "Cité", area: "cite", price: "58€", cat: "cat1", vibe: "historique", remark: "Le charme de la Cité sans le superflu.", link: "https://www.loustal-et-les-pitchouns.fr/" },
+    { name: "Le Jardin en Ville", loc: "Bastide", area: "bastide", price: "62€", cat: "cat1", vibe: "nature", remark: "Cadre végétal original et cuisine saine.", link: "http://www.lejardinenville.com/" },
+    { name: "Le Comte Roger", loc: "Cité Médiévale", area: "cite", price: "90€", cat: "cat2", vibe: "historique", remark: "Un classique indémodable de la Cité.", link: "https://www.comteroger.com/" },
+    { name: "La Marquière", loc: "Cité Médiévale", area: "cite", price: "88€", cat: "cat2", vibe: "romantique", remark: "Service attentionné et cuisine soignée.", link: "https://www.lamarquiere.com/" },
+    { name: "L'Écurie", loc: "Proche Cité", area: "bastide", price: "85€", cat: "cat2", vibe: "historique", remark: "Très belles viandes pour les amateurs.", link: "https://www.lecurie-carcassonne.fr/" },
+    { name: "L'Ambrosia", loc: "Pezens (10min)", area: "alentours", price: "105€", cat: "cat2", vibe: "romantique", remark: "Calme et raffinement pour une soirée zen.", link: "https://www.ambrosia-pezens.com/" },
+    { name: "L'Escargot", loc: "Cité", area: "cite", price: "80€", cat: "cat2", vibe: "historique", remark: "Un dîner classique et sûr dans les remparts.", link: "https://www.lescargot-cite.com/" },
+    { name: "La Bergerie", loc: "Aragon (15min)", area: "alentours", price: "120€", cat: "cat3", vibe: "nature", remark: "Étoilé Michelin en pleine garrigue.", link: "https://www.labergerie-aragon.com/" },
+    { name: "L'Atelier de la Truffe", loc: "Cité", area: "cite", price: "115€", cat: "cat3", vibe: "romantique", remark: "Pour les passionnés de truffe.", link: "https://www.facebook.com/latelierdelatruffe/" },
+    { name: "Restaurant l'Évêché", loc: "Cité", area: "cite", price: "110€", cat: "cat3", vibe: "historique", remark: "Cadre majestueux chargé d'histoire.", link: "https://www.leveche.fr/" },
+    { name: "Adelaide", loc: "Cité", area: "cite", price: "115€", cat: "cat3", vibe: "nature", remark: "Vue imprenable sur les remparts illuminés.", link: "https://www.restaurant-adelaide.com/" },
+    { name: "Le Clos des Framboisiers", loc: "Alzonne", area: "alentours", price: "160€", cat: "cat4", vibe: "romantique", remark: "Une pépite confidentielle pour s'évader.", link: "https://www.leclosdesframboisiers.fr/" },
+    { name: "Château de Floure", loc: "Floure (15min)", area: "alentours", price: "155€", cat: "cat4", vibe: "historique", remark: "Prestige et élégance à l'état pur.", link: "https://www.chateau-de-floure.com/" },
+    { name: "Bloc G", loc: "Carcassonne", area: "bastide", price: "65€", cat: "cat1", vibe: "moderne", remark: "Bistronomie moderne et efficace.", link: "https://www.facebook.com/blocgcarcassonne/" },
+    { name: "Le Petit Trianon", loc: "Bastide", area: "bastide", price: "55€", cat: "cat1", vibe: "romantique", remark: "Cuisine de goût à prix raisonnable.", link: "https://www.tripadvisor.fr/" },
+    { name: "Dame Carcas", loc: "Cité", area: "cite", price: "75€", cat: "cat1", vibe: "historique", remark: "Auberge de qualité au cœur des remparts.", link: "https://www.damecarcas.com/" },
+    { name: "Le Saint Jean", loc: "Cité", area: "cite", price: "70€", cat: "cat1", vibe: "historique", remark: "Face au château comtal.", link: "https://www.lesaintjean-carcassonne.com/" }
+];
+
+function renderGrid(data) {
+    const grid = document.getElementById('restaurantGrid');
+    const noResult = document.getElementById('noResult');
+    
+    const cards = grid.querySelectorAll('.card');
+    cards.forEach(c => c.remove());
+
+    if (data.length === 0) {
+        noResult.style.display = 'block';
+    } else {
+        noResult.style.display = 'none';
+        data.forEach(r => {
+            grid.innerHTML += `
+                <div class="card ${r.cat}">
+                    <div class="card-content">
+                        <div class="price-tag">Menu : ${r.price} env.</div>
+                        <h2>${r.name}</h2>
+                        <div class="location">📍 ${r.loc}</div>
+                        <div class="ambiance">✨ ${r.ambiance || 'Gastronomie locale'}</div>
+                        <div class="remarks"><strong>Notes pour Céline :</strong> ${r.remark}</div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="${r.link}" target="_blank" class="site-link">Voir le site officiel</a>
+                    </div>
+                </div>
+            `;
+        });
+    }
+}
+
+function filterData(category) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('btnAll').classList.add('active');
+    
+    const filtered = category === 'all' ? restaurants : restaurants.filter(r => r.cat === category);
+    renderGrid(filtered);
+}
+
+function runQuiz() {
+    const price = document.getElementById('qPrice').value;
+    const vibe = document.getElementById('qVibe').value;
+    const area = document.getElementById('qArea').value;
+
+    let filtered = restaurants;
+
+    if (price !== 'all') filtered = filtered.filter(r => r.cat === price);
+    if (vibe !== 'all') filtered = filtered.filter(r => r.vibe === vibe);
+    if (area !== 'all') filtered = filtered.filter(r => r.area === area);
+
+    renderGrid(filtered);
+    window.scrollTo({ top: document.querySelector('.filters').offsetTop - 100, behavior: 'smooth' });
+}
+
+window.onload = () => renderGrid(restaurants);
+</script>
+
+</body>
+</html>
