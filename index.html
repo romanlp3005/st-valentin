@@ -282,8 +282,8 @@
 <section class="invitation-box">
     <h2>L'écrin pour Céline</h2>
     <p>
-        "Alexandre, voici ta sélection de 30 restaurants avec les données exactes. <br>
-        Tous les liens externes ont été retirés pour une navigation simplifiée." <br>
+        "Alexandre, voici ta sélection de 30 restaurants avec ambiances et tarifs vérifiés. <br>
+        Filtre par style pour trouver l'endroit qui lui correspond le mieux." <br>
         <span style="color: var(--primary-red); font-size: 1.5rem;">❤</span>
     </p>
 </section>
@@ -299,6 +299,16 @@
                 <option value="cat2">Entre 80€ et 110€</option>
                 <option value="cat3">Entre 110€ et 150€</option>
                 <option value="cat4">Prestige (+150€)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Ambiance souhaitée</label>
+            <select id="qVibe">
+                <option value="all">Toutes les ambiances</option>
+                <option value="romantique">Intime & Romantique</option>
+                <option value="historique">Patrimoine & Histoire</option>
+                <option value="moderne">Moderne & Design</option>
+                <option value="nature">Nature & Vue</option>
             </select>
         </div>
         <div class="form-group">
@@ -326,157 +336,157 @@
 </footer>
 
 <script>
-// --- DONNÉES TECHNIQUES ---
+// --- DONNÉES TECHNIQUES COMPLÈTES AVEC AMBIANCES ---
 const data = [
     {rank:1, name:"Domaine d'Auriac", address:"Route de Saint-Hilaire, 11000 Carcassonne — ~5–8 km",
-      priceText:"SV 2026 : 130€ / pers. ; alt. Menu du domaine 80€ ; « Fou de Truffes » 120€",
+      priceText:"SV 2026 : 130€ / pers. (TheFork) ; alt. Menu du domaine 80€ ; « Fou de Truffes » 120€",
       priceNums:[130,80,120], vibe:"Table gastronomique dans un domaine (terrasse; service très noté) — bon pour une soirée très soignée.",
-      area:"alentours", score:"4.6/5"
+      vibeType:"historique", area:"alentours", score:"4.6/5"
     },
     {rank:2, name:"Restaurant La Barbacane", address:"Hôtel de la Cité, Place Auguste Pierre Pont — ~0–3 km",
       priceText:"SV 2026 : Déjeuner 95€ / pers. ; Dîner 225€ / pers. (souvent complet)",
       priceNums:[95,225], vibe:"Cadre néo-gothique / lieu emblématique dans la Cité (ambiance feutrée).",
-      area:"cite", score:"4.4/5"
+      vibeType:"historique", area:"cite", score:"4.4/5"
     },
     {rank:3, name:"La Table de Franck Putelat", address:"Carcassonne — ~0–5 km",
       priceText:"SV 2026 : NC. Repère : menu St-Valentin 2025 à 195€ / pers. (hors boissons).",
       priceNums:[195], vibe:"Expérience très gastronomique (niveau prix généralement élevé).",
-      area:"bastide", score:"4.0/5"
+      vibeType:"moderne", area:"bastide", score:"4.0/5"
     },
     {rank:4, name:"Le Puits du Trésor", address:"Lastours (11600) — ~12–15 km",
       priceText:"SV 2026 : 135€ / pers. ; alt. Menu Découverte 75€ ; Menu Terre & Mer 95€",
       priceNums:[135,75,95], vibe:"Table de haute cuisine : idéale si Céline aime les dîners “expérience”.",
-      area:"alentours", score:"4.3/5"
+      vibeType:"nature", area:"alentours", score:"4.3/5"
     },
     {rank:5, name:"L'Ambrosia", address:"Carrefour la Madeleine (D6113), 11170 Pezens — ~8–12 km",
       priceText:"SV 2026 : 95€ / pers. (hors boissons). Alt : Tentation 55€ ; Dégustation 62€.",
       priceNums:[95,55,62,68], vibe:"Cuisine moderne soignée ; cadre intimiste (cave privatisable).",
-      area:"alentours", score:"4.6/5"
+      vibeType:"romantique", area:"alentours", score:"4.6/5"
     },
     {rank:6, name:"La Table d'Alaïs", address:"32 rue du Plô (La Cité) — ~0–3 km",
       priceText:"SV 2026 : 85€ / pers., menu unique “le 14 février au soir”.",
       priceNums:[85], vibe:"Gastro dans la Cité : élégant, parfait pour un dîner romantique.",
-      area:"cite", score:"4.5/5"
+      vibeType:"historique", area:"cite", score:"4.5/5"
     },
     {rank:7, name:"Auberge des Lices", address:"3 rue Raymond Roger de Trencavel (La Cité) — ~0–3 km",
       priceText:"SV 2026 : menu “Saint Valentin” 75€ (site).",
       priceNums:[75], vibe:"Charme Cité médiévale : décor pierre, ambiance intimiste.",
-      area:"cite", score:"4.2/5"
+      vibeType:"romantique", area:"cite", score:"4.2/5"
     },
     {rank:8, name:"Chez Christine", address:"4 Rue Porte d'Aude, 11000 Carcassonne — ~0–3 km",
       priceText:"SV 2026 : 75€ / pers. (PDF “menu 14.02.2026”).",
       priceNums:[75], vibe:"Cadre cosy et soigné (pierre / lumières ; déco mentionnée).",
-      area:"bastide", score:"4.0/5"
+      vibeType:"romantique", area:"bastide", score:"4.0/5"
     },
     {rank:9, name:"Chez Fred by Pierre et Siham", address:"Carcassonne — ~0–5 km",
       priceText:"SV 2026 : 70€ / pers., “hors boisson”, midi & soir.",
       priceNums:[70], vibe:"Très bon compromis romantique + valeur sûre, sans exploser le budget.",
-      area:"bastide", score:"3.9/5"
+      vibeType:"romantique", area:"bastide", score:"3.9/5"
     },
     {rank:10, name:"Restaurant TRIBE Carcassonne", address:"2 rue des 3 Couronnes — ~0–2 km",
       priceText:"SV 2026 : 65€ / pers. hors boissons.",
       priceNums:[65], vibe:"Ambiance contemporaine “hôtel design” : moderne et instagrammable.",
-      area:"bastide", score:"3.6/5"
+      vibeType:"moderne", area:"bastide", score:"3.6/5"
     },
     {rank:11, name:"Le Meez Restaurant", address:"290 av. du Général Leclerc — ~2–4 km",
       priceText:"SV 2026 : 55€ / pers. (TheFork).",
       priceNums:[55], vibe:"Option soignée sans chichi (ambiance bien notée).",
-      area:"alentours", score:"3.3/5"
+      vibeType:"moderne", area:"alentours", score:"3.3/5"
     },
     {rank:12, name:"Le Moulin de Trèbes", address:"2 Rue du Moulin de Trèbes — ~8–10 km",
       priceText:"SV 2026 : menu spécial 55€ / pers. (hors boissons).",
       priceNums:[55], vibe:"Cadre au fil de l’eau : paisible, romantique.",
-      area:"alentours", score:"3.1/5"
+      vibeType:"nature", area:"alentours", score:"3.1/5"
     },
     {rank:13, name:"Le Bistrot d'Alice", address:"26 Rue Chartrand — ~0–2 km",
       priceText:"SV 2026 : menu 59€ / pers. (Instagram).",
       priceNums:[59], vibe:"Tête-à-tête cosy en cœur de ville, format bistrot.",
-      area:"bastide", score:"3.2/5"
+      vibeType:"romantique", area:"bastide", score:"3.2/5"
     },
     {rank:14, name:"Le Jardin en Ville", address:"5 rue des Framboisiers — ~2–4 km",
       priceText:"SV 2026 : Menu spécial annoncé sur réseaux.",
       priceNums:[], vibe:"Ambiance originale / contemporaine ; bon si Céline aime les lieux vivants.",
-      area:"bastide", score:"3.3/5"
+      vibeType:"nature", area:"bastide", score:"3.3/5"
     },
     {rank:15, name:"La Marquière", address:"13 rue Saint Jean — ~0–2 km",
       priceText:"SV 2026 : Non publié. Repère : 46€.",
       priceNums:[46], vibe:"Bon “anti-attrape-touristes” avec patio agréable.",
-      area:"cite", score:"3.6/5"
+      vibeType:"romantique", area:"cite", score:"3.6/5"
     },
     {rank:16, name:"Le-Bis-Troquet", address:"22 rue Chartran — ~0–2 km",
       priceText:"SV 2026 : Non publié. Repère : <60€.",
       priceNums:[], vibe:"Convivial, moins “grand soir”.",
-      area:"bastide", score:"3.1/5"
+      vibeType:"romantique", area:"bastide", score:"3.1/5"
     },
     {rank:17, name:"La Table du Roi", address:"2 Rue des Calquières — ~0–2 km",
       priceText:"SV 2026 : Menu Saint Valentin annoncé.",
       priceNums:[55], vibe:"Cadre patrimonial : plaira si Céline aime les ambiances “Cité”.",
-      area:"cite", score:"3.4/5"
+      vibeType:"historique", area:"cite", score:"3.4/5"
     },
     {rank:18, name:"S Comme", address:"7 Rue Barri del Castel, Palaja — ~6–8 km",
       priceText:"SV 2026 : NC. Repère : 38€ et 42€.",
       priceNums:[38,42], vibe:"INSIDER proche Carcassonne, terrasse agréable.",
-      area:"alentours", score:"3.4/5"
+      vibeType:"nature", area:"alentours", score:"3.4/5"
     },
     {rank:19, name:"La Table Cave du Château", address:"La Métairie Basse, Pennautier — ~5–7 km",
       priceText:"SV 2026 : NC. Repère : 33€.",
       priceNums:[33], vibe:"Cadre domaine/bergerie ; romantique.",
-      area:"alentours", score:"3.5/5"
+      vibeType:"historique", area:"alentours", score:"3.5/5"
     },
     {rank:20, name:"La Rencontre", address:"6 Place des Tilleuls, Montolieu — ~18–20 km",
       priceText:"SV 2026 : menu dès 30€ sur réservation.",
       priceNums:[30], vibe:"Village-livre : soirée simple et charmante.",
-      area:"alentours", score:"2.8/5"
+      vibeType:"romantique", area:"alentours", score:"2.8/5"
     },
     {rank:21, name:"Freaks Bistronomie", address:"Bastide — ~0–3 km",
       priceText:"SV 2026 : Non publié. Repère : Bistronomie.",
       priceNums:[], vibe:"Bistronomie urbaine : créatif et branché.",
-      area:"bastide", score:"3.4/5"
+      vibeType:"moderne", area:"bastide", score:"3.4/5"
     },
     {rank:22, name:"Bloc G", address:"Carcassonne — ~0–5 km",
       priceText:"SV 2026 : Non publié. Repère : Maison d'hôtes.",
       priceNums:[], vibe:"Lieu intimiste et discret si Céline aime le calme.",
-      area:"alentours", score:"3.0/5"
+      vibeType:"romantique", area:"alentours", score:"3.0/5"
     },
     {rank:23, name:"Auberge de Dame Carcas", address:"Cité médiévale — ~0–3 km",
       priceText:"SV 2026 : Non publié. Repère : Cité.",
       priceNums:[], vibe:"Vieilles pierres : romantisme historique.",
-      area:"cite", score:"3.0/5"
+      vibeType:"historique", area:"cite", score:"3.0/5"
     },
     {rank:24, name:"Le Bistrot d'Auriac", address:"Carcassonne — ~5–8 km",
       priceText:"SV 2026 : Non publié. Repère : Bistro chic.",
       priceNums:[], vibe:"Alternative bistro chic du grand domaine.",
-      area:"alentours", score:"2.9/5"
+      vibeType:"romantique", area:"alentours", score:"2.9/5"
     },
     {rank:25, name:"Brasserie à 4 Temps", address:"Bastide — ~0–3 km",
       priceText:"SV 2026 : Non publié.",
       priceNums:[], vibe:"Option brasserie soignée Putelat.",
-      area:"bastide", score:"2.7/5"
+      vibeType:"moderne", area:"bastide", score:"2.7/5"
     },
     {rank:26, name:"Mercure La Cité — La Table de l'Olivier", address:"Carcassonne — ~0–3 km",
       priceText:"SV 2026 : Non publié.",
       priceNums:[], vibe:"Confort hôtelier sérieux.",
-      area:"cite", score:"2.8/5"
+      vibeType:"moderne", area:"cite", score:"2.8/5"
     },
     {rank:27, name:"Au Four Saint Louis", address:"Cité — ~0–3 km",
       priceText:"SV 2026 : Non publié.",
       priceNums:[], vibe:"Ambiance traditionnelle Cité.",
-      area:"cite", score:"2.6/5"
+      vibeType:"historique", area:"cite", score:"2.6/5"
     },
     {rank:28, name:"Comte Roger", address:"Cité — ~0–3 km",
       priceText:"Fermeture pour transition (mi-mars 2026).",
       priceNums:[], vibe:"Indisponible ce soir.",
-      area:"cite", score:"1.8/5", status:"closed"
+      vibeType:"historique", area:"cite", score:"1.8/5", status:"closed"
     },
     {rank:29, name:"Café de la Comédie", address:"Carcassonne — ~0–2 km",
       priceText:"SV 2026 : Non publié. Repère : ~25€.",
       priceNums:[25], vibe:"Café/bistro central.",
-      area:"bastide", score:"2.3/5"
+      vibeType:"moderne", area:"bastide", score:"2.3/5"
     },
     {rank:30, name:"La Taverne Moderne", address:"Carcassonne — ~0–2 km",
       priceText:"SV 2026 : Non publié. Repère : ~25€.",
       priceNums:[25], vibe:"Adresse populaire et simple.",
-      area:"bastide", score:"2.4/5"
+      vibeType:"moderne", area:"bastide", score:"2.4/5"
     }
 ];
 
@@ -531,12 +541,16 @@ function render(list) {
 
 function runFilter() {
     const price = document.getElementById('qPrice').value;
+    const vibe = document.getElementById('qVibe').value;
     const area = document.getElementById('qArea').value;
 
     let filtered = data;
 
     if (price !== 'all') {
         filtered = filtered.filter(r => determineCategory(r.priceNums) === price);
+    }
+    if (vibe !== 'all') {
+        filtered = filtered.filter(r => r.vibeType === vibe);
     }
     if (area !== 'all') {
         filtered = filtered.filter(r => r.area === area);
